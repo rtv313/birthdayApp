@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">birthdayApp</string>
-    <string name="facebook_app_id">800770454360873</string>
-    <string name="fb_login_protocol_scheme">fb800770454360873</string>
+    <string name="facebook_app_id">868870521229698</string>
+    <string name="fb_login_protocol_scheme">fb868870521229698</string>
     <string name="facebook_client_token">43ebd15fa92b4355f53aa967e44f507c</string>
     <string name="title_activity_main_login">MainActivityLogin</string>
     <!-- Strings used for fragments for navigation -->

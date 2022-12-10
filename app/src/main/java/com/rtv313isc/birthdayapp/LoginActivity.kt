@@ -1,5 +1,6 @@
 package com.rtv313isc.birthdayapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -31,8 +32,7 @@ class LoginActivity : AppCompatActivity() {
         val accessToken = AccessToken.getCurrentAccessToken()
         val isLoggedIn = accessToken != null && !accessToken.isExpired
 
-
-        loginButton.setOnClickListener(View.OnClickListener {
+        loginButton.setOnClickListener {
             // Login
             callbackManager = CallbackManager.Factory.create()
             LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email"))
@@ -40,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
                 object : FacebookCallback<LoginResult> {
                     override fun onSuccess(loginResult: LoginResult) {
                         Log.d("MainActivity", "Facebook token: " + loginResult.accessToken.token)
-
+                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                     }
 
                     override fun onCancel() {
@@ -53,6 +53,11 @@ class LoginActivity : AppCompatActivity() {
 
                     }
                 })
-        })
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        callbackManager?.onActivityResult(requestCode, resultCode, data)
     }
 }
