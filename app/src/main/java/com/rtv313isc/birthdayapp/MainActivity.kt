@@ -14,6 +14,7 @@ import com.rtv313isc.birthdayapp.ui.theme.BirthdayAppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        GetFriendsBasicCall().getFriends()
         super.onCreate(savedInstanceState)
         setContent {
             BirthdayAppTheme {
