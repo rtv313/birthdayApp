@@ -10,7 +10,7 @@ class GetFriendsBasicCall {
     fun getFriends(){
         val accessToken = AccessToken.getCurrentAccessToken()
         val userId = accessToken?.userId
-        val graphPath = "/$userId/friends"
+        val graphPath = "/$userId/friends?fields=id,name,birthday"
 
         val request = GraphRequest.newGraphPathRequest(
             accessToken,
