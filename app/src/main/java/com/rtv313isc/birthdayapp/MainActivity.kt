@@ -10,8 +10,12 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.rtv313isc.birthdayapp.presentation.list.BirthdaysViewModel
 import com.rtv313isc.birthdayapp.ui.theme.BirthdayAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         GetFriendsBasicCall().getFriends()
@@ -32,6 +36,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String) {
+    val viewModel: BirthdaysViewModel = hiltViewModel()
     Text(text = "Hello $name!")
 }
 
