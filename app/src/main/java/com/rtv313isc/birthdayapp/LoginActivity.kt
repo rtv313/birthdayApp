@@ -32,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
         val accessToken = AccessToken.getCurrentAccessToken()
         val isLoggedIn = accessToken != null && !accessToken.isExpired
 
+
         loginButton.setOnClickListener {
             // Login
             callbackManager = CallbackManager.Factory.create()
