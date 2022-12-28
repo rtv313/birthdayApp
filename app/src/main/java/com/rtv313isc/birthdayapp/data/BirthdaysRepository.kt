@@ -5,6 +5,8 @@ import com.rtv313isc.birthdayapp.data.local.BirthdaysDao
 import com.rtv313isc.birthdayapp.data.local.LocalBirthDay
 import com.rtv313isc.birthdayapp.data.remote.BirthdaysApiService
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.withContext
 import java.net.ConnectException
 import java.net.UnknownHostException
@@ -17,12 +19,17 @@ class BirthdaysRepository @Inject constructor(
     private val birthdaysDao: BirthdaysDao,
     @IoDispatcher private val dispatcher: CoroutineDispatcher
 ) {
+    private val _birthdaysUpdated = MutableStateFlow(false)
+    val birthdaysUpdated : StateFlow<Boolean> = _birthdaysUpdated
 
     suspend fun loadBirthdays() {
          withContext(dispatcher){
             try {
                 restInterface.getBirthdays()
-                restInterface.birthdayListState.collect { birthdaysDao.addAll(it) }
+                restInterface.birthdayListState.collect {
+                    birthdaysDao.addAll(it)
+                    _birthdaysUpdated.value = true
+                }
             }catch (e: Exception) {
                 when (e) {
                     is UnknownHostException,
