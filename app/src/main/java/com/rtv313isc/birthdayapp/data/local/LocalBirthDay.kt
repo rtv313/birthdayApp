@@ -13,5 +13,5 @@ data class LocalBirthDay(
     @ColumnInfo(name = "r_name")
     val name: String,
     @ColumnInfo(name = "r_birthday")
-    val birthDay: String
+    val birthDay: java.util.Date
 )
