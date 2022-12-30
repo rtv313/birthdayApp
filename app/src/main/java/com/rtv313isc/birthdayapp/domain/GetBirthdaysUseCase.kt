@@ -7,7 +7,7 @@ import javax.inject.Inject
 class GetBirthdaysUseCase @Inject constructor(
     private val repository: BirthdaysRepository
 ){
-    suspend operator fun invoke(): List<LocalBirthDay> {
-        return repository.getBirthdays()
+    suspend operator fun invoke(): List<Birthday> {
+        return repository.getBirthdaysSorted()
     }
 }
