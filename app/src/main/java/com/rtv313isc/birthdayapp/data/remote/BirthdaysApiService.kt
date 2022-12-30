@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import org.json.JSONArray
 import org.json.JSONObject
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -44,8 +45,10 @@ class BirthdaysApiService @Inject constructor() {
             val splitDate = friendJson.get("birthday").toString().split("/")
             val day = splitDate[1]
             val month = splitDate[0]
-            // We set the same year for sorting purposes plus we don't need year of birth
-            val birthday = SimpleDateFormat("dd/MM/yyyy").parse("$day/$month/1998")
+
+            val dateFormat: DateFormat = SimpleDateFormat("dd/MM/yyyy")
+            val currentYear = dateFormat.format(Date()).split("/")[2].toInt()
+            val birthday = dateFormat.parse("$day/$month/$currentYear")
             birthday?.let { birthdaysList.add(LocalBirthDay(id, name, birthday)) }
         }
         return birthdaysList

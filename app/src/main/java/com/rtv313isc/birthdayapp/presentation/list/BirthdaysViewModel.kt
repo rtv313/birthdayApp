@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rtv313isc.birthdayapp.data.di.MainDispatcher
 import com.rtv313isc.birthdayapp.data.local.LocalBirthDay
+import com.rtv313isc.birthdayapp.domain.Birthday
 import com.rtv313isc.birthdayapp.domain.GetBirthdaysUseCase
 import com.rtv313isc.birthdayapp.domain.GetRepositoryUpdatedStateUseCase
 import com.rtv313isc.birthdayapp.domain.RefreshBirthdaysUseCase
@@ -23,8 +24,8 @@ class BirthdaysViewModel @Inject constructor(
     @MainDispatcher private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
-    private val _birthDaysState = mutableStateOf(mutableListOf<LocalBirthDay>())
-    val birthDaysState: State<List<LocalBirthDay>> get() = _birthDaysState
+    private val _birthDaysState = mutableStateOf(mutableListOf<Birthday>())
+    val birthDaysState: State<List<Birthday>> get() = _birthDaysState
 
     private val errorHandler = CoroutineExceptionHandler { _, exception ->
         exception.printStackTrace()

@@ -12,4 +12,10 @@ interface BirthdaysDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addAll(birthdays: List<LocalBirthDay>)
+
+    @Query("SELECT * FROM birthdays WHERE r_birthday >= :currentDate ORDER BY r_birthday ASC")
+    suspend fun getAllBirthdaysAfterToday(currentDate: Long): List<LocalBirthDay>
+
+    @Query("SELECT * FROM birthdays WHERE r_birthday < :currentDate ORDER BY r_birthday ASC")
+    suspend fun getAllBirthdaysBeforeToday(currentDate: Long): List<LocalBirthDay>
 }
