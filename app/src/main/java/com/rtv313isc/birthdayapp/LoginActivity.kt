@@ -12,9 +12,10 @@ import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
-
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
 
@@ -46,12 +47,10 @@ class LoginActivity : AppCompatActivity() {
 
                     override fun onCancel() {
                         Log.d("MainActivity", "Facebook onCancel.")
-
                     }
 
                     override fun onError(error: FacebookException) {
                         Log.d("MainActivity", "Facebook onError.")
-
                     }
                 })
         }
