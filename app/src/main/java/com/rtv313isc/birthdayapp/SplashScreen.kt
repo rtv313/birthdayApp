@@ -12,10 +12,14 @@ class SplashScreen : AppCompatActivity() {
     }
 
     private fun chooseScreen(){
-        if (AccessToken.getCurrentAccessToken() == null || !AccessToken.isCurrentAccessTokenActive()) {
-            startActivity(Intent(this@SplashScreen,LoginActivity::class.java))
+        val accessToken = AccessToken.getCurrentAccessToken()
+        val isLoggedIn = accessToken != null && !accessToken.isExpired
+        val intent:Intent = if (!isLoggedIn) {
+            Intent(this@SplashScreen,LoginActivity::class.java)
         }else{
-            startActivity(Intent(this@SplashScreen, MainActivity::class.java))
+            Intent(this@SplashScreen, MainActivity::class.java)
         }
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
     }
 }
