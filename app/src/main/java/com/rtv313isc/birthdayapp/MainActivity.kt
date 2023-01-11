@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
@@ -14,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role.Companion.Button
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -22,6 +24,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.rtv313isc.birthdayapp.presentation.list.BirthdaysViewModel
 import com.rtv313isc.birthdayapp.ui.theme.BirthdayAppTheme
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.compose.foundation.Image
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -85,5 +88,9 @@ fun Greeting(name: String) {
 fun DefaultPreview() {
     BirthdayAppTheme {
         Greeting("Android")
+        Image(
+            painter = painterResource(id = R.drawable.logo),
+            contentDescription = "like"
+        )
     }
 }
